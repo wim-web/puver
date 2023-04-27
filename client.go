@@ -14,11 +14,12 @@ const (
 	RegistryVisibilityPrivate
 )
 
-//go:generate enumer -type=RequestType -json -transform kebab
+//go:generate enumer -type=RequestType -json -transform kebab -trimprefix RequestType
 type RequestType int
 
 const (
-	RegistryProviders RequestType = iota
+	RequestTypeRegistryProviders RequestType = iota
+	RequestTypeGPGKeys
 )
 
 func NewTerraformCloudClient(token string, org string, name string) TerraformCloudClient {

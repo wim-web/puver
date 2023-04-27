@@ -27,7 +27,7 @@ type CreateProviderRequest struct {
 func createProvider(ctx context.Context, c *TerraformCloudClient) error {
 	b := CreateProviderRequest{
 		CreateProviderData{
-			Type: RegistryProviders,
+			Type: RequestTypeRegistryProviders,
 			CreateProviderAttributes: CreateProviderAttributes{
 				Name:         c.Name,
 				Namespace:    c.Organization,
@@ -37,7 +37,6 @@ func createProvider(ctx context.Context, c *TerraformCloudClient) error {
 	}
 
 	payload, err := json.Marshal(b)
-	fmt.Println(string(payload))
 	if err != nil {
 		return err
 	}
