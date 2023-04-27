@@ -6,14 +6,33 @@ import (
 	"net/http"
 )
 
-func NewTerraformCloudClient(token string) TerraformCloudClient {
+//go:generate enumer -type=RegistryVisibility -json -trimprefix RegistryVisibility -transform lower
+type RegistryVisibility int
+
+const (
+	RegistryVisibilityPublic RegistryVisibility = iota
+	RegistryVisibilityPrivate
+)
+
+//go:generate enumer -type=RequestType -json -transform kebab
+type RequestType int
+
+const (
+	RegistryProviders RequestType = iota
+)
+
+func NewTerraformCloudClient(token string, org string, name string) TerraformCloudClient {
 	return TerraformCloudClient{
-		Token: token,
+		Token:        token,
+		Organization: org,
+		Name:         name,
 	}
 }
 
 type TerraformCloudClient struct {
-	Token string
+	Token        string
+	Organization string
+	Name         string
 }
 
 func (c TerraformCloudClient) defaultHeader() map[string]string {

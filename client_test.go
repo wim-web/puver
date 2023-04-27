@@ -6,7 +6,7 @@ import (
 )
 
 func TestTerraformCloudClient_defaultHeader(t *testing.T) {
-	c := NewTerraformCloudClient("test-token")
+	c := NewTerraformCloudClient("test-token", "org", "name")
 	expected := map[string]string{
 		"Authorization": "Bearer test-token",
 		"Content-Type":  "application/vnd.api+json",
@@ -18,7 +18,7 @@ func TestTerraformCloudClient_defaultHeader(t *testing.T) {
 }
 
 func TestTerraformCloudClient_mergeHeader(t *testing.T) {
-	c := NewTerraformCloudClient("test-token")
+	c := NewTerraformCloudClient("test-token", "org", "name")
 	base := map[string]string{
 		"Authorization": "Bearer test-token",
 		"Content-Type":  "application/vnd.api+json",
