@@ -20,6 +20,15 @@ type RequestType int
 const (
 	RequestTypeRegistryProviders RequestType = iota
 	RequestTypeGPGKeys
+	RequestRegistryProviderVersions
+)
+
+type Protocol string
+
+const (
+	Protocol_6_0 Protocol = "6.0"
+	Protocol_5_0 Protocol = "5.0"
+	Protocol_4_0 Protocol = "4.0"
 )
 
 func NewTerraformCloudClient(token string, org string, name string) TerraformCloudClient {

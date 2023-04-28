@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _RequestTypeName = "registry-providersgpg-keys"
+const _RequestTypeName = "registry-providersgpg-keysrequest-registry-provider-versions"
 
-var _RequestTypeIndex = [...]uint8{0, 18, 26}
+var _RequestTypeIndex = [...]uint8{0, 18, 26, 60}
 
-const _RequestTypeLowerName = "registry-providersgpg-keys"
+const _RequestTypeLowerName = "registry-providersgpg-keysrequest-registry-provider-versions"
 
 func (i RequestType) String() string {
 	if i < 0 || i >= RequestType(len(_RequestTypeIndex)-1) {
@@ -27,20 +27,24 @@ func _RequestTypeNoOp() {
 	var x [1]struct{}
 	_ = x[RequestTypeRegistryProviders-(0)]
 	_ = x[RequestTypeGPGKeys-(1)]
+	_ = x[RequestRegistryProviderVersions-(2)]
 }
 
-var _RequestTypeValues = []RequestType{RequestTypeRegistryProviders, RequestTypeGPGKeys}
+var _RequestTypeValues = []RequestType{RequestTypeRegistryProviders, RequestTypeGPGKeys, RequestRegistryProviderVersions}
 
 var _RequestTypeNameToValueMap = map[string]RequestType{
 	_RequestTypeName[0:18]:       RequestTypeRegistryProviders,
 	_RequestTypeLowerName[0:18]:  RequestTypeRegistryProviders,
 	_RequestTypeName[18:26]:      RequestTypeGPGKeys,
 	_RequestTypeLowerName[18:26]: RequestTypeGPGKeys,
+	_RequestTypeName[26:60]:      RequestRegistryProviderVersions,
+	_RequestTypeLowerName[26:60]: RequestRegistryProviderVersions,
 }
 
 var _RequestTypeNames = []string{
 	_RequestTypeName[0:18],
 	_RequestTypeName[18:26],
+	_RequestTypeName[26:60],
 }
 
 // RequestTypeString retrieves an enum value from the enum constants string name.
