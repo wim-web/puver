@@ -78,3 +78,55 @@ func AddGPGKey(ctx context.Context, c *TerraformCloudClient, pubKey string) (Add
 
 	return r, nil
 }
+
+type ListGPGKeyResponse struct {
+	Data []struct {
+		Attributes struct {
+			PubKey string `json:"ascii-armor"`
+			KeyId  string `json:"key-id"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
+
+func FindGPGKey(ctx context.Context, c *TerraformCloudClient, pubKey string) (string, error) {
+	url := "https://app.terraform.io/api/registry/private/v2/gpg-keys?filter%5Bnamespace%5D=" + c.Organization
+
+	resp, err := c.Request(
+		"GET",
+		url,
+		nil,
+		nil,
+	)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+
+	if err != nil {
+		return "", err
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("[%d]: %s", resp.StatusCode, string(body))
+	}
+
+	var r ListGPGKeyResponse
+
+	err = json.Unmarshal(body, &r)
+
+	if err != nil {
+		return "", err
+	}
+
+	for _, k := range r.Data {
+		if k.Attributes.PubKey == pubKey {
+			return k.Attributes.KeyId, nil
+		}
+	}
+
+	return "", nil
+}
