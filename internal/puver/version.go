@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 type CreateVersionAttributes struct {
@@ -83,6 +84,10 @@ func CreateVersion(
 
 	if err != nil {
 		return r, err
+	}
+
+	if resp.StatusCode == http.StatusUnprocessableEntity && strings.Contains(string(body), "Version has already been taken") {
+		return r, AlreadyExist
 	}
 
 	if resp.StatusCode != http.StatusCreated {
