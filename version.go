@@ -43,7 +43,7 @@ func CreateVersion(
 
 	b := CreateVersionRequest{
 		CreateVersionData{
-			Type: RequestRegistryProviderVersions,
+			Type: RequestTypeRegistryProviderVersions,
 			CreateVersionAttributes: CreateVersionAttributes{
 				Version: version,
 				KeyId:   keyId,

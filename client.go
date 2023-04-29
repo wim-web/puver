@@ -20,7 +20,8 @@ type RequestType int
 const (
 	RequestTypeRegistryProviders RequestType = iota
 	RequestTypeGPGKeys
-	RequestRegistryProviderVersions
+	RequestTypeRegistryProviderVersions
+	RequestTypeRegistryProviderVersionPlatforms
 )
 
 type Protocol string

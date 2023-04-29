@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _RequestTypeName = "registry-providersgpg-keysrequest-registry-provider-versions"
+const _RequestTypeName = "registry-providersgpg-keysregistry-provider-versionsregistry-provider-version-platforms"
 
-var _RequestTypeIndex = [...]uint8{0, 18, 26, 60}
+var _RequestTypeIndex = [...]uint8{0, 18, 26, 52, 87}
 
-const _RequestTypeLowerName = "registry-providersgpg-keysrequest-registry-provider-versions"
+const _RequestTypeLowerName = "registry-providersgpg-keysregistry-provider-versionsregistry-provider-version-platforms"
 
 func (i RequestType) String() string {
 	if i < 0 || i >= RequestType(len(_RequestTypeIndex)-1) {
@@ -27,24 +27,28 @@ func _RequestTypeNoOp() {
 	var x [1]struct{}
 	_ = x[RequestTypeRegistryProviders-(0)]
 	_ = x[RequestTypeGPGKeys-(1)]
-	_ = x[RequestRegistryProviderVersions-(2)]
+	_ = x[RequestTypeRegistryProviderVersions-(2)]
+	_ = x[RequestTypeRegistryProviderVersionPlatforms-(3)]
 }
 
-var _RequestTypeValues = []RequestType{RequestTypeRegistryProviders, RequestTypeGPGKeys, RequestRegistryProviderVersions}
+var _RequestTypeValues = []RequestType{RequestTypeRegistryProviders, RequestTypeGPGKeys, RequestTypeRegistryProviderVersions, RequestTypeRegistryProviderVersionPlatforms}
 
 var _RequestTypeNameToValueMap = map[string]RequestType{
 	_RequestTypeName[0:18]:       RequestTypeRegistryProviders,
 	_RequestTypeLowerName[0:18]:  RequestTypeRegistryProviders,
 	_RequestTypeName[18:26]:      RequestTypeGPGKeys,
 	_RequestTypeLowerName[18:26]: RequestTypeGPGKeys,
-	_RequestTypeName[26:60]:      RequestRegistryProviderVersions,
-	_RequestTypeLowerName[26:60]: RequestRegistryProviderVersions,
+	_RequestTypeName[26:52]:      RequestTypeRegistryProviderVersions,
+	_RequestTypeLowerName[26:52]: RequestTypeRegistryProviderVersions,
+	_RequestTypeName[52:87]:      RequestTypeRegistryProviderVersionPlatforms,
+	_RequestTypeLowerName[52:87]: RequestTypeRegistryProviderVersionPlatforms,
 }
 
 var _RequestTypeNames = []string{
 	_RequestTypeName[0:18],
 	_RequestTypeName[18:26],
-	_RequestTypeName[26:60],
+	_RequestTypeName[26:52],
+	_RequestTypeName[52:87],
 }
 
 // RequestTypeString retrieves an enum value from the enum constants string name.
