@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 type CreateProviderAttributes struct {
@@ -56,9 +57,14 @@ func CreateProvider(ctx context.Context, c *TerraformCloudClient) error {
 
 	defer resp.Body.Close()
 
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	if resp.StatusCode == http.StatusUnprocessableEntity && strings.Contains(string(body), "Name has already been taken") {
+		return AlreadyExist
+	}
+
 	if resp.StatusCode != http.StatusCreated {
-		b, _ := ioutil.ReadAll(resp.Body)
-		return fmt.Errorf("[%d]: %s", resp.StatusCode, string(b))
+		return fmt.Errorf("[%d]: %s", resp.StatusCode, string(body))
 	}
 
 	return nil
