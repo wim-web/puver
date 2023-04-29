@@ -1,4 +1,4 @@
-package main
+package puver
 
 import (
 	"github.com/ProtonMail/gopenpgp/v2/crypto"
@@ -10,7 +10,7 @@ type GPGKey struct {
 	Public  string
 }
 
-func generateGPGKey(name string, email string, passphrase string) (GPGKey, error) {
+func GenerateGPGKey(name string, email string, passphrase string) (GPGKey, error) {
 	var k GPGKey
 
 	key, err := helper.GenerateKey(name, email, []byte(passphrase), "rsa", 4096)

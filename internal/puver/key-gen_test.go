@@ -1,4 +1,4 @@
-package main
+package puver
 
 import (
 	"strings"
@@ -11,7 +11,7 @@ func TestGenerateGPGKey(t *testing.T) {
 	passphrase := "my-secret-passphrase"
 
 	// Generate key pair
-	keyPair, err := generateGPGKey(name, email, passphrase)
+	keyPair, err := GenerateGPGKey(name, email, passphrase)
 	if err != nil {
 		t.Errorf("Failed to generate key pair: %v", err)
 	}
