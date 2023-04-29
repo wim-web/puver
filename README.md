@@ -2,6 +2,10 @@
 
 puver publish terraform provider.
 
+## Supported Registry Service
+
+- Terraform Cloud
+
 ## requirements
 
 - SHA256SUMS file
