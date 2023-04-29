@@ -24,7 +24,7 @@ type CreateProviderRequest struct {
 	CreateProviderData `json:"data"`
 }
 
-func createProvider(ctx context.Context, c *TerraformCloudClient) error {
+func CreateProvider(ctx context.Context, c *TerraformCloudClient) error {
 	b := CreateProviderRequest{
 		CreateProviderData{
 			Type: RequestTypeRegistryProviders,
