@@ -18,7 +18,7 @@ type CreatePlatformAttributes struct {
 
 type CreatePlatformData struct {
 	Type                     RequestType `json:"type"`
-	CreatePlatformAttributes `json"attributes"`
+	CreatePlatformAttributes `json:"attributes"`
 }
 
 type CreatePlatformRequest struct {
